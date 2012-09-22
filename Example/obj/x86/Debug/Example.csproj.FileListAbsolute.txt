@@ -1,0 +1,7 @@
+H:\Fernando\Programacao\C#\FergoDXF\Example\obj\x86\Debug\ResolveAssemblyReference.cache
+H:\Fernando\Programacao\C#\FergoDXF\Example\bin\Debug\Example.exe
+H:\Fernando\Programacao\C#\FergoDXF\Example\bin\Debug\Example.pdb
+H:\Fernando\Programacao\C#\FergoDXF\Example\obj\x86\Debug\Example.exe
+H:\Fernando\Programacao\C#\FergoDXF\Example\obj\x86\Debug\Example.pdb
+H:\Fernando\Programacao\C#\FergoDXF\Example\bin\Debug\SimpleDXF.dll
+H:\Fernando\Programacao\C#\FergoDXF\Example\bin\Debug\SimpleDXF.pdb
