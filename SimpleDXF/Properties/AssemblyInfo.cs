@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FergoDXF")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("SimpleDXF")]
+[assembly: AssemblyDescription("Simple DXF reader library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FergoDXF")]
+[assembly: AssemblyCompany("Fergo")]
+[assembly: AssemblyProduct("SimpleDXF")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
