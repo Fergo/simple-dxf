@@ -19,6 +19,7 @@ namespace SimpleDXF {
         private StreamReader dxfReader;
         private int dxfLinesRead = 0;
 
+        public Header Header { get; set; }
         public List<Layer> Layers { get; set; }
         public List<Line> Lines { get; set; }
         public List<Polyline> Polylines { get; set; }
@@ -32,6 +33,7 @@ namespace SimpleDXF {
         /// </summary>
         /// <param name="dxfFile">The path of the DXF file to load</param>
         public Document(string dxfFile) {
+            Header = new Header();
             Layers = new List<Layer>();
             Lines = new List<Line>();
             Polylines = new List<Polyline>();
@@ -110,6 +112,24 @@ namespace SimpleDXF {
                                 code = this.ReadPair();
                                 break;
                         }
+                    }
+                } else if (code.Code == 9) {
+                    switch (code.Value) {
+                        case "$ACADVER":
+                            string version = ReadHeaderValue(ref code, 1);
+                            Header.SetAcadVersion(version);
+                            break;
+                        case "$DWGCODEPAGE":
+                            string codepage = ReadHeaderValue(ref code, 3);
+                            Header.SetCodepage(codepage);
+                            break;
+                        case "$LASTSAVEDBY":
+                            string lastSavedBy = ReadHeaderValue(ref code, 1);
+                            Header.SetLastSavedBy(lastSavedBy);
+                            break;
+                        default:
+                            code = this.ReadPair();
+                            break;
                     }
                 } else {
                     code = this.ReadPair();
@@ -444,6 +464,19 @@ namespace SimpleDXF {
             return returnval;
         }
 
+        private string ReadHeaderValue(ref CodePair code, int groupcode) {
+            string returnval = "";
+
+            code = this.ReadPair();
+            while (code.Code != 0) {
+                if (code.Code == groupcode) {
+                    returnval = code.Value;
+                    break;
+                }
+                code = this.ReadPair();
+            }
+            return returnval;
+        }
     }
 
     /// <summary>
@@ -688,6 +721,45 @@ namespace SimpleDXF {
             this.Layer = Layer;
         }
     }
+
+    /// <summary>
+    /// Contains general information about the DXF. 
+    /// It consists of an AutoCAD database version number and a number of system variables.
+    /// </summary>
+    public class Header {
+
+        /// <summary>
+        /// The AutoCAD drawing database version number.
+        /// </summary>
+        public string AcadVersion { get; private set; }
+
+        /// <summary>
+        /// Drawing code page; set to the system code page when a new drawing is created, but not otherwise maintained by AutoCAD.
+        /// </summary>
+        public string DrawingCodepage { get; private set; }
+
+        /// <summary>
+        /// Name of the User who saved the file last.
+        /// </summary>
+        public string LastSavedBy { get; private set; }
+
+        public Header() {
+
+        }
+
+        public void SetAcadVersion(string acadVersion) {
+            AcadVersion = acadVersion;
+        }
+
+        public void SetCodepage(string codepage) {
+            DrawingCodepage = codepage;
+        }
+
+        public void SetLastSavedBy(string savedBy) {
+            LastSavedBy = savedBy;
+        }
+    }
+
 
     #endregion
 
