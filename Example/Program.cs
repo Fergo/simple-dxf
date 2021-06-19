@@ -62,6 +62,19 @@ namespace Example {
             //Create the output path for the text file
             string txtpath = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + ".txt");
             StreamWriter output = new StreamWriter(txtpath);
+            
+            //Header Information
+            string headerInfoVersion = string.Format("The DXF's Drawing Database Version is {0}.", doc.Header.AcadVersion);
+            Console.WriteLine(headerInfoVersion);
+            output.WriteLine(headerInfoVersion);
+
+            string headerInfoCodepage = string.Format("It's Codepage is '{0}'.", doc.Header.DrawingCodepage);
+            Console.WriteLine(headerInfoCodepage);
+            output.WriteLine(headerInfoCodepage);
+
+            string headerInfoLastSavedBy = string.Format("The User who saved it last was '{0}'.\r\n", doc.Header.LastSavedBy);
+            Console.WriteLine(headerInfoLastSavedBy);
+            output.WriteLine(headerInfoLastSavedBy);
 
             //Print everything about each entity... code is very self explanatory
             Console.Write("Processing " + layers.Count + " layers...");
