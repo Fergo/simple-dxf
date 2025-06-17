@@ -154,6 +154,7 @@ namespace SimpleDXF {
                 throw new Exception("Invalid code (" + line + ") at line " + this.dxfLinesRead);
             } else {
                 value = dxfReader.ReadLine();
+                dxfLinesRead++;
                 return new CodePair(code, value);
             }
         }
