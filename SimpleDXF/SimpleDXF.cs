@@ -46,9 +46,10 @@ namespace SimpleDXF {
             CultureInfo cultureInfo = CultureInfo.CurrentCulture;
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
-            if (File.Exists(dxfFile)) {
-                dxfReader = new StreamReader(dxfFile);
-            }
+            if (!File.Exists(dxfFile))
+                throw new FileNotFoundException("DXF file not found", dxfFile);
+
+            dxfReader = new StreamReader(dxfFile);
         }
 
         /// <summary>
