@@ -1011,7 +1011,7 @@ namespace SimpleDXF {
         /// <summary>
         /// Convert any AciColor value to ARGB
         /// </summary>
-        /// <param name="ACIColor">The AciColor index, from 0 to 2055</param>
+        /// <param name="ACIColor">The AciColor index, from 0 to 255</param>
         /// <returns>32bit unsigned integer with the color in ARGB format</returns>
         public static uint ACItoARGB(byte AciColor) {
             if (AciColor > 255 || AciColor < 0)
