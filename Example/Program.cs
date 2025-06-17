@@ -11,9 +11,9 @@ namespace Example {
 
             //User needs to specify a file
             if (args.Count() == 0) {
-                Console.WriteLine("Example on how use Fergo SimpleDXF library\n" +
+                Console.WriteLine("Example on how to use Fergo SimpleDXF library\n" +
                                   "Usage: Example.exe [dxffile]\n\n" +
-                                  "This application will output entity data to  a text to the same directory\n\n" +
+                                  "This application will output entity data to a text to the same directory\n\n" +
                                   "Press any key to continue...");
                 return;
             }
